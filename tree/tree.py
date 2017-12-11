@@ -29,15 +29,15 @@ def TrainTree(data, labels, flUseHSVColorspace):
 
     trainData, testData, trainLabels, testLabels = train_test_split(data, labels, test_size=0.20, random_state=42)
 
-    print trainData.shape
-    print trainLabels.shape
-    print testData.shape
-    print testLabels.shape
+    print(trainData.shape)
+    print(trainLabels.shape)
+    print(testData.shape)
+    print(testLabels.shape)
 
     clf = tree.DecisionTreeClassifier(criterion='entropy')
     clf = clf.fit(trainData, trainLabels)
-    print clf.feature_importances_
-    print clf.score(testData, testLabels)
+    print(clf.feature_importances_)
+    print(clf.score(testData, testLabels))
 
     return clf
 
@@ -46,9 +46,9 @@ def ApplyToImage(path, flUseHSVColorspace):
     clf= TrainTree(data, labels, flUseHSVColorspace)
 
     img= cv2.imread(path)
-    print img.shape
+    print(img.shape)
     data= np.reshape(img,(img.shape[0]*img.shape[1],3))
-    print data.shape
+    print(data.shape)
 
     if(flUseHSVColorspace):
         data= BGR2HSV(data)
